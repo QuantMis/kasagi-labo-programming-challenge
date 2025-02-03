@@ -1,6 +1,6 @@
 # Kasagi Labo Programming Challenge
 
-This repository contains solutions for the Kasagi Labo programming challenge, which consists of three interconnected challenges focused on random data generation, analysis, and containerization.
+This repository contains solutions for the Kasagi Labo programming challenge
 
 ## Project Structure
 
@@ -10,7 +10,6 @@ This repository contains solutions for the Kasagi Labo programming challenge, wh
 ├── challenge_a.js
 ├── challenge_b.js
 ├── Dockerfile
-└── data/
 ```
 
 ## Requirements
@@ -26,37 +25,33 @@ git clone [repository-url]
 cd kasagi-labo-challenge
 ```
 
-2. Install dependencies:
-```bash
-npm install
-```
-
-## Usage
-
-### Challenge A
+### Challenge A Solution
 
 ```bash
 node challenge_a.js
 ```
-This will create `output.txt` in the current directory containing the random objects.
+This will create `data.txt` in the current directory containing the random objects.
 
-### Challenge B
+### Challenge B Solution
 
 ```bash
 node challenge_b.js
 ```
-This will read `output.txt` and create `analysis_output.txt` with the analysis results.
+This will read `data.txt` and create `output.txt` with the analysis results.
 
-### Challenge C
+### Challenge C Solution
 
 1. Build the Docker image:
 ```bash
-docker build -t kasagi-challenge .
+docker build -t kasagi-challenge-b .
 ```
+This will create a kasagi-challenge-b image
 
 2. Run the container:
 ```bash
-docker run -v $(pwd)/data:/usr/src/app/data kasagi-challenge
+docker run --rm -v "$(pwd)":/usr/src/app kasagi-challenge-b 
 ```
 
-Make sure the input file is placed in the `./data` directory before running the container.
+This will create a container and run challenge_b.js script and create an `output.txt` inside the container and map it to the host machine.
+To test this please delete `output.txt` when you run the challenge_b.js directly without using Docker.
+
